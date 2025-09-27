@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Appointments</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.doctor.label }}<br>{{ form.doctor(size=40) }}</p>
+    <p>{{ form.specialty.label }}<br>{{ form.specialty(size=40) }}</p>
+    <p>{{ form.date.label }}<br>{{ form.date() }}</p>
+    <p>{{ form.time.label }}<br>{{ form.time() }}</p>
+    <p>{{ form.address.label }}<br>{{ form.address(size=60) }}</p>
+    <p>{{ form.notes.label }}<br>{{ form.notes(rows=3, cols=60) }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+
+  <h3>Your appointments</h3>
+  <ul>
+    {% for a in appointments %}
+      <li>{{ a.date }} {{ a.time or '' }} — {{ a.doctor }} ({{ a.specialty or 'N/A' }})
+        {% if a.address %}
+          <a href="{{ url_for('main.open_map', appt_id=a.id) }}">Open in Google Maps</a>
+        {% endif %}
+        <form method="POST" action="{{ url_for('main.delete_appointment', appt_id=a.id) }}" style="display:inline;">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No appointments booked.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="app-container">
+    <header>
+        <h1>My Medications</h1>
+    </header>
+
+    <!-- Medication Form -->
+    <form method="POST" action="{{ url_for('main.add_medication') }}">
+        <input type="text" name="med_name" placeholder="Medication Name" required>
+        <input type="text" name="dosage" placeholder="Dosage" required>
+        <select name="frequency" required>
+            <option value="">Select Frequency</option>
+            <option value="once">Once a day</option>
+            <option value="twice">Twice a day</option>
+            <option value="thrice">Thrice a day</option>
+        </select>
+        <button type="submit">Add Medication</button>
+    </form>
+
+    <!-- Medication List -->
+    <div class="med-list">
+        {% for med in medications %}
+        <div class="med-card pastel{{ loop.index % 3 + 1 }}">
+            <div class="med-info">
+                <h3>{{ med.name }}</h3>
+                <p>{{ med.dosage }} - {{ med.frequency }}</p>
+            </div>
+            <form method="POST" action="{{ url_for('main.delete_medication', med_id=med.id) }}">
+                <button class="delete-btn" type="submit">X</button>
+            </form>
+        </div>
+        {% else %}
+        <p>No medications added yet.</p>
+        {% endfor %}
+    </div>
+
+    <footer>
+        &copy; {{ current_year or 2025 }} My Med App
+    </footer>
+</div>
+{% endblock %}

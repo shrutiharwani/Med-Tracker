@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Medicines</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.name.label }}<br>{{ form.name(size=36) }}</p>
+    <p>{{ form.dose.label }}<br>{{ form.dose(size=36) }}</p>
+    <p>{{ form.time.label }}<br>{{ form.time() }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+
+  <h3>Your medicines</h3>
+  <ul>
+    {% for m in medicines %}
+      <li>{{ m.name }} — {{ m.dose }} at {{ m.time.strftime('%H:%M') }}
+        <form method="POST" action="{{ url_for('main.delete_medicine', med_id=m.id) }}" style="display:inline;">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No medicines yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

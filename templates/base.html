@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTrack</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="brand" href="{{ url_for('main.index') }}">MedTrack</a>
+            <ul class="nav-links">
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('main.medicines_page') }}"><i class="fa-solid fa-pills"></i> Medicines</a></li>
+                    <li><a href="{{ url_for('main.symptoms_page') }}"><i class="fa-solid fa-heart-pulse"></i> Symptoms</a></li>
+                    <li><a href="{{ url_for('main.appointments_page') }}"><i class="fa-solid fa-calendar-check"></i> Appointments</a></li>
+                    <li><a href="{{ url_for('main.contacts_page') }}"><i class="fa-solid fa-address-book"></i> Contacts</a></li>
+                    <li><a href="{{ url_for('main.logout') }}" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('main.login') }}"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                    <li><a href="{{ url_for('main.register') }}"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash messages -->
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert {{ category }}">
+                        {{ message }}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main content -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© {{ current_year or 2025 }} <strong>MedTrack</strong>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Optional JS for flash messages -->
+    <script>
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

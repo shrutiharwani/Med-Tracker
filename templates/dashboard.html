@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedTrack Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>💊 MedTrack</h1>
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Add Medication</a>
+            <a href="#">History</a>
+            <a href="#">Profile</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Add Medication Form -->
+        <section class="form-section">
+            <h2>➕ Add Medication</h2>
+            <form>
+                <input type="text" placeholder="Medicine Name" required>
+                <input type="text" placeholder="Dosage (e.g., 2 pills)" required>
+                <input type="time" placeholder="Time to take" required>
+                <button type="submit">Add Medication</button>
+            </form>
+        </section>
+
+        <!-- Upcoming Medications -->
+        <section class="upcoming-section">
+            <h2>⏰ Upcoming Medications</h2>
+            <table>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Dosage</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>2 pills</td>
+                    <td>08:00 AM</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                    <td>Vitamin D</td>
+                    <td>1 pill</td>
+                    <td>12:00 PM</td>
+                    <td><span class="status taken">Taken</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Medication History -->
+        <section class="history-section">
+            <h2>📜 Medication History</h2>
+            <table>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Dosage</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>2 pills</td>
+                    <td>2025-09-21</td>
+                    <td><span class="status taken">Taken</span></td>
+                </tr>
+                <tr>
+                    <td>Vitamin D</td>
+                    <td>1 pill</td>
+                    <td>2025-09-21</td>
+                    <td><span class="status missed">Missed</span></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

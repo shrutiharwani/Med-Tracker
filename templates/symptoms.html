@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Symptoms</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.symptom_text.label }}<br>{{ form.symptom_text(size=60) }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+
+  {% if remedy %}
+    <div class="container">
+      <h3>Suggested Remedy</h3>
+      <p>{{ remedy }}</p>
+    </div>
+  {% endif %}
+
+  <h3>Your recorded symptoms</h3>
+  <ul>
+    {% for s in symptoms %}
+      <li>{{ s.symptom_text }}
+        <form method="POST" action="{{ url_for('main.delete_symptom', symptom_id=s.id) }}" style="display:inline;">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No symptoms recorded.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
