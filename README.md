@@ -1,55 +1,38 @@
-# MedTrack — Personal Medical Tracking Web App
+# MedTrack
 
-MedTrack is a Flask-based medical tracking web application that helps users manage their health information in one place.  
-Users can track medicines, symptoms, doctor appointments, and emergency contacts securely.
+MedTrack is a Flask-based medical tracking web application that helps users manage their health data securely and efficiently.
 
 ---
 
 ## Features
 
-### User Authentication
-- Secure login and registration
+- User registration and login
+- Medicine tracking with dose and time
+- Google Calendar reminders for medicines
+- Symptom tracking with basic remedies
+- Doctor appointment management
+- Emergency contact storage
 - Separate dashboard for each user
-- Password hashing using Werkzeug
-
-### Medicine Tracking
-- Add medicine name, dose, and time
-- Automatic reminders using Google Calendar
-- View and remove medicines
-
-### Symptom Tracking
-- Add daily symptoms
-- Displays basic remedies for common symptoms
-- Helps monitor health patterns
-
-### Doctor Appointments
-- Schedule doctor appointments
-- Store doctor name, specialty, date, and notes
-- Google Maps integration for location assistance
-
-### Emergency Contacts
-- Add emergency contact name and phone number
-- Quick access during emergencies
-- Remove contacts when needed
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-----|-----------|
-| Backend | Flask (Python) |
-| Database | SQLite |
-| ORM | SQLAlchemy |
-| Authentication | Flask-Login |
-| Forms | Flask-WTF |
-| APIs | Google Calendar, Google Maps |
-| Frontend | HTML, CSS, Jinja2 |
+- Python
+- Flask
+- SQLite
+- SQLAlchemy
+- Flask-Login
+- Flask-WTF
+- HTML, CSS, Jinja2
+- Google Calendar API
+- Google Maps
 
 ---
 
 ## Project Structure
 
+```
 medtrack/
 │
 ├── app.py
@@ -61,58 +44,97 @@ medtrack/
 ├── requirements.txt
 │
 ├── static/
-│ └── style.css
+│   └── style.css
 │
 ├── templates/
-│ ├── base.html
-│ ├── index.html
-│ ├── dashboard.html
-│ ├── login.html
-│ ├── register.html
-│ ├── medicines.html
-│ ├── symptoms.html
-│ ├── appointments.html
-│ └── contacts.html
+│   ├── base.html
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── login.html
+│   ├── register.html
+│   ├── medicines.html
+│   ├── symptoms.html
+│   ├── appointments.html
+│   └── contacts.html
 │
 └── README.md
-
-yaml
-Copy code
+```
 
 ---
 
-## Installation & Setup
+## Installation
 
-### 1. Clone the Repository
-```bash
+Clone the repository:
+
+```
 git clone https://github.com/your-username/medtrack.git
 cd medtrack
-2. Create Virtual Environment
-bash
-Copy code
+```
+
+Create virtual environment:
+
+```
 python -m venv venv
+```
+
 Activate it:
 
-Windows
-
-bash
-Copy code
+Windows:
+```
 venv\Scripts\activate
-Mac/Linux
+```
 
-bash
-Copy code
+Mac/Linux:
+```
 source venv/bin/activate
-3. Install Dependencies
-bash
-Copy code
-pip install -r requirements.txt
-4. Run the Application
-bash
-Copy code
-python app.py
-Open your browser and visit:
+```
 
-cpp
-Copy code
+Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+Run the application:
+
+```
+python app.py
+```
+
+Open in browser:
+
+```
 http://127.0.0.1:5000/
+```
+
+---
+
+## Google Calendar Setup
+
+1. Create a Google Cloud project
+2. Enable Google Calendar API
+3. Download `credentials.json`
+4. Place it in the project root
+5. Login once to grant permission
+
+---
+
+## Reset Database
+
+```
+python reset_db.py
+```
+
+This will delete all existing data.
+
+---
+
+## Author
+
+Shruti Harwani
+
+---
+
+## License
+
+Educational project. Free to use and modify.
