@@ -119,22 +119,3 @@ http://127.0.0.1:5000/
 
 ---
 
-## Reset Database
-
-```
-python reset_db.py
-```
-
-This will delete all existing data.
-
----
-
-## Author
-
-Shruti Harwani
-
----
-
-## License
-
-Educational project. Free to use and modify.
